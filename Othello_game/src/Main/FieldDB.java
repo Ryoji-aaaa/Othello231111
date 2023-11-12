@@ -47,6 +47,7 @@ public class FieldDB implements SweepMethod{
 				}
 			}
 		}
+		System.out.print("\n");
 	}
 	
 	
