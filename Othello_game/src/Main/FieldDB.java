@@ -1,7 +1,7 @@
 package Main;
 
-public class FieldDB implements SweepMethod{
-	private final int row=8 , column=8 ;
+public class FieldDB implements TraverseMethod{
+	private final int row=4 , column=4 ;
 	private String[][] bord = new String[row][column];//画面用
 	boolean[][] bordCanPut = new boolean[row][column];//裏方用データ（おける場所）
 	
@@ -14,16 +14,18 @@ public class FieldDB implements SweepMethod{
 			}
 		}
 		// 中央4マスの白黒を初期配置する
-		bord[3][3] = "●";
-		bord[4][4] = "●";
-		bord[3][4] = "○";
-		bord[4][3] = "○";
+		bord[row/2][column/2] = "●";
+		bord[row/2-1][column/2-1] = "●";
+		bord[row/2][column/2-1] = "○";
+		bord[row/2-1][column/2] = "○";
 	}
 	/*ゲッターとセッター*/
+	public int getRow() {return this.row;}
+	public int getCol() {return this.column;}
 	public String getXY(int X, int Y) {return bord[Y][X];}
 	public boolean[][] getBCP(){return bordCanPut;}
 	public boolean getBCPXY(int X , int Y) {return bordCanPut[Y][X];}
-	
+
 	public void setXY(int X, int Y, String str) {
 		this.bord[Y][X] = str;
 	}
@@ -210,7 +212,7 @@ public class FieldDB implements SweepMethod{
 	}
 
 	@Override
-	public boolean Sweep(int X, int Y ,int attribute) {//GameOpeのscanPutPoint用
+	public boolean Traverse(int X, int Y ,int attribute) {//GameOpeのscanPutPoint用
 		for(int i=0 ; i<8 ;i++) {
 			try {
 				int temp = goDIR(i , X , Y , 1);

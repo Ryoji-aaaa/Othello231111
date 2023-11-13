@@ -1,6 +1,6 @@
 package Main;
 
-public interface SweepMethod {
+public interface TraverseMethod {
 	//ToDo:駒の上下左右、斜めに走査（探査）する
 	
 	/*場所の走査　方角の8分割と対応させた名前*/
@@ -18,6 +18,6 @@ public interface SweepMethod {
 	boolean scanAround(int X , int Y);//全方向に1マスだけ行く
 	
 	/*Sweep*/
-	boolean Sweep(int X,int Y ,int attribute);
+	boolean Traverse(int X,int Y ,int attribute);
 	//boolean SweepOne(int dir , int X ,int Y);
 }

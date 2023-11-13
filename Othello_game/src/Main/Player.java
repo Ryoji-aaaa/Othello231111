@@ -2,6 +2,7 @@ package Main;
 
 import java.util.ArrayList;
 
+//おいた場所から裏返せる場所をArraylistで返す用クラス
 public class Player {
 	private int X , Y ;
 	private final int attribute; //属性：playerが白か黒か
@@ -12,7 +13,7 @@ public class Player {
 		if(attribute == 0 ||attribute == 1) {//白:0　, 黒:1
 		this.attribute = attribute;
 		}else {
-			throw new IllegalArgumentException("不正な入力です（○か●以外NG）");
+			throw new IllegalArgumentException("不正な入力です（0か1以外NG）");
 		}
 	}
 	public int getX() {return this.X; }
@@ -25,21 +26,28 @@ public class Player {
 	}
 	
 	//裏返す座標をArrayに格納。未完成。
-	public ArrayList<int[]> FlipXY(FieldDB F , Player P){
+	public ArrayList<int[]> FlipList(FieldDB F , Player P){
 		ArrayList<int[]> xy = new ArrayList<>();
-		int target = 2;//初期値に意味はなし
+		int target = 2;//裏返す対称(初期値に意味はなし)
 		if(P.getAtt()==0) {target=1;}//黒を探す
 		if(P.getAtt()==1) {target=0;}//白を探す
+		//8方向に走査
 		for(int i=0 ; i<8 ;i++) {
 			int x=P.getX(),y=P.getY();
 			try {
 				int n = 1;
 				while(true) {
 					int temp = F.goDIR(i ,x ,y ,n);
-					if(temp==target) {
-						xy.add(coordinate(i ,x ,y ,n));
-					}else {break;}
-					n++;
+					if(temp==P.getAtt()) {
+						while(n>1) {
+							n--;
+							xy.add(coordinate(i ,x ,y ,n));
+						}
+						break;
+					}else if(temp==target){
+						n++;
+						continue;
+					}else{break;}
 				}
 			}catch(Exception e){//進んだ方向が盤面外だった時は飛ばす
 				continue;
