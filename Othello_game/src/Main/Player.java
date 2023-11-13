@@ -25,7 +25,8 @@ public class Player {
 		this.Y = Y;
 	}
 	
-	//裏返す座標をArrayに格納。未完成。
+	//裏返す座標をArrayに格納。
+	//ToDo:バグの温床。きれいにする。
 	public ArrayList<int[]> FlipList(FieldDB F , Player P){
 		ArrayList<int[]> xy = new ArrayList<>();
 		int target = 2;//裏返す対称(初期値に意味はなし)
@@ -55,6 +56,7 @@ public class Player {
 		}
 		return xy;
 	}
+	//ToDo:方向に三角関数を入れるべきだった+FieldDBにも似たメソッドがある。
 	private int[] coordinate(int i ,int x ,int y ,int n) {
 		int[] xy = new int[2];
 		switch(i) {
@@ -80,7 +82,7 @@ public class Player {
 			break;
 		case 5:
 			xy[0]=x-n;
-			xy[1]=y+n;
+			xy[1]=y-n;
 			break;
 		case 6:
 			xy[0]=x-n;

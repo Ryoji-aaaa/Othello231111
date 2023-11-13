@@ -2,11 +2,6 @@ package Main;
 
 
 public interface Input {
-	
-	public abstract int getX();
-	public abstract int getY();
-	
-	public abstract void scanXY();
-	
-	
+	//ToDo:Playerクラスに使うインターフェース
+	//たぶんいらない（継承してないクラスだから）
 }

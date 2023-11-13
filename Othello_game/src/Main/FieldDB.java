@@ -1,7 +1,7 @@
 package Main;
 
 public class FieldDB implements TraverseMethod{
-	private final int row=4 , column=4 ;
+	private final int row=5 , column=5;
 	private String[][] bord = new String[row][column];//画面用
 	boolean[][] bordCanPut = new boolean[row][column];//裏方用データ（おける場所）
 	
@@ -173,7 +173,7 @@ public class FieldDB implements TraverseMethod{
 			throw new IllegalArgumentException("bordに異物を検知　: "+ temp);
 		}
 	}
-
+	//Playerクラスにも似たクラスがある。
 	@Override
 	public int goDIR(int dir, int X, int Y, int n) {//DIR=direction
 		switch(dir) {
