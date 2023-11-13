@@ -5,7 +5,7 @@ public class Game {
 		FieldDB F = new FieldDB();
 		GameOpe g1 = new GameOpe() ;
 		g1.Referee(F);
-
+		System.out.println("ゲーム終了");
 	}
 
 }

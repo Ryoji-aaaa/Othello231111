@@ -1,7 +1,7 @@
 package Main;
 
 public class FieldDB implements TraverseMethod{
-	private final int row=5 , column=5;
+	private final int row=8 , column=8;
 	private String[][] bord = new String[row][column];//画面用
 	boolean[][] bordCanPut = new boolean[row][column];//裏方用データ（おける場所）
 	
