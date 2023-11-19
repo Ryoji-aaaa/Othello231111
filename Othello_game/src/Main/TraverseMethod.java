@@ -17,7 +17,7 @@ public interface TraverseMethod {
 	int goDIR(int dir , int X , int Y , int n );//各方位の呼び出し
 	boolean scanAround(int X , int Y);//全方向に1マスだけ行く
 	
-	/*Sweep*/
+	/*Traverse*/
 	boolean Traverse(int X,int Y ,int attribute);
-	//boolean SweepOne(int dir , int X ,int Y);
+	//boolean TraverseOne(int dir , int X ,int Y);
 }
