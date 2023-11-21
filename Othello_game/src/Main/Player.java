@@ -62,7 +62,7 @@ public class Player {
 		return xy ;
 	}
 	
-	//ToDo:方向に三角関数を入れるべきだった+FieldDBにも似たメソッドがある。
+	//方向に三角関数を入れるべきだった？+FieldDBにも似たメソッドがある。
 	private int[] coordinate(int i ,int x ,int y ,int n) {
 		int[] xy = new int[2];
 		switch(i) {

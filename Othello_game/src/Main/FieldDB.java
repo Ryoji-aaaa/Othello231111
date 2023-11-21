@@ -53,7 +53,7 @@ public class FieldDB implements TraverseMethod{
 	}
 	
 	
-	/*以下Sweep（走査)系method*/
+	/*以下traverse（走査)系method*/
 	@Override
 	public int go0(int X, int Y, int n) {
 		String temp = this.getXY(X,Y+n) ;

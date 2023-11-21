@@ -5,59 +5,52 @@ import java.util.Scanner;
 
 public class GameOpe  {
 	public GameOpe() {}
-	 //おいた場所から裏返せる場所をArraylistで返すクラス
+	 //おいた場所から裏返せる場所をArrayListで返すクラス
 	Player p1 = new Player(0);//白
 	Player p2 = new Player(1);//黒
 	
 	public void referee(FieldDB F) {//Gameからレフェリーに進行が渡される
-		Scanner sc = new Scanner(System.in);
 		while(scanPutPoint(F,p1)||scanPutPoint(F,p2)) {
-			if(scanPutPoint(F,p1)) {
-				F.Display();
-				System.out.print("白○(X,Y)　--->");
-				int X = sc.nextInt();
-				int Y = sc.nextInt();
-				try {
-					if(!F.getBCPXY(X, Y)) {
-						System.out.print("その場所は置けません\n");
-						System.out.print("白○(X,Y)　--->");
-						X = sc.nextInt();
-						Y = sc.nextInt();
-					}
-				}catch(Exception e){
-					System.out.print("その場所は置けません\n");
-					System.out.print("白○(X,Y)　--->");
-					X = sc.nextInt();
-					Y = sc.nextInt();
-				}
-				p1.setXY(X, Y);
-				Flip(F,p1);
-			}else {System.out.println("-----白○(X,Y)　Skip -----");}
-			if(scanPutPoint(F,p2)) {
-				F.Display();
-				System.out.print("黒●(X,Y)　--->");
-				int X = sc.nextInt();
-				int Y = sc.nextInt();
-				try {
-					if(!F.getBCPXY(X, Y)) {
-						System.out.print("その場所は置けません\n");
-						System.out.print("黒●(X,Y)　--->");
-						X = sc.nextInt();
-						Y = sc.nextInt();
-					}
-				}catch(Exception e){
-					System.out.print("その場所は置けません\n");
-					System.out.print("黒●(X,Y)　--->");
-					X = sc.nextInt();
-					Y = sc.nextInt();
-				}
-				p2.setXY(X, Y);
-				Flip(F,p2);
-			}else {System.out.println("-----黒●(X,Y)　Skip -----");}
+			doPlayer(F,p1);
+			doPlayer(F,p2);
 		}
 		F.Display();
 		EndProcessing(F);
-		sc.close();
+	}
+	
+	private void doPlayer(FieldDB F , Player P) {
+		String str = "";
+		if(P.getAtt()==0) {
+			str ="白○";
+		}else if(P.getAtt()==1) {
+			str ="黒○";
+		}
+		if(scanPutPoint(F,p1)) {
+			Scanner sc = new Scanner(System.in);
+			F.Display();
+			System.out.printf("%s(X,Y)　--->",str);
+			int X = sc.nextInt();
+			int Y = sc.nextInt();
+			try {
+				if(!F.getBCPXY(X, Y)) {
+					System.out.print("その場所は置けません\n");
+					System.out.printf("%s(X,Y)　--->",str);
+					X = sc.nextInt();
+					Y = sc.nextInt();
+				}
+			}catch(Exception e){
+				System.out.print("その場所は置けません\n");
+				System.out.printf("%s(X,Y)　--->",str);
+				X = sc.nextInt();
+				Y = sc.nextInt();
+			}
+			P.setXY(X, Y);
+			flip(F,P);
+			sc.close();
+		}else {
+			System.out.printf("-----%s(X,Y)　Skip -----\n",str);
+			return;
+		}
 	}
 	
 	//盤面でPlayer:Pがおける場所をtrueで返す
@@ -78,7 +71,7 @@ public class GameOpe  {
 	}
 	
 	//ToDo:右下に置くと配列のエラーが発生する。
-	public void Flip(FieldDB F ,Player P) {
+	public void flip(FieldDB F ,Player P) {
 		ArrayList<int[]> xy = P.flipList(F, P);
 		String str ="Flip";
 		if(P.getAtt()==0) {str="○";}//白に反す
