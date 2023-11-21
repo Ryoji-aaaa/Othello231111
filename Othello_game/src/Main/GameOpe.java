@@ -9,7 +9,7 @@ public class GameOpe  {
 	Player p1 = new Player(0);//白
 	Player p2 = new Player(1);//黒
 	
-	public void Referee(FieldDB F) {//Gameからレフェリーに進行が渡される
+	public void referee(FieldDB F) {//Gameからレフェリーに進行が渡される
 		Scanner sc = new Scanner(System.in);
 		while(scanPutPoint(F,p1)||scanPutPoint(F,p2)) {
 			if(scanPutPoint(F,p1)) {
@@ -67,7 +67,7 @@ public class GameOpe  {
 		for(int y=0 ; y<BCP.length ; y++) {
 			for(int x=0 ; x<BCP[y].length ; x++) { 
 				if(F.scanAround(x, y) && F.getXY(x, y).equals("|")) {
-					boolean temp = F.Traverse(x,y,P.getAtt()); 
+					boolean temp = F.traverse(x,y,P.getAtt()); 
 					BCP[y][x] = temp;
 					PutPoint  = (temp||PutPoint);	
 				}else {BCP[y][x] = false;}
@@ -79,7 +79,7 @@ public class GameOpe  {
 	
 	//ToDo:右下に置くと配列のエラーが発生する。
 	public void Flip(FieldDB F ,Player P) {
-		ArrayList<int[]> xy = P.FlipList(F, P);
+		ArrayList<int[]> xy = P.flipList(F, P);
 		String str ="Flip";
 		if(P.getAtt()==0) {str="○";}//白に反す
 		if(P.getAtt()==1) {str="●";}//黒に反す

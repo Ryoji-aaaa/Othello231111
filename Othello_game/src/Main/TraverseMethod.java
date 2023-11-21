@@ -18,6 +18,6 @@ public interface TraverseMethod {
 	boolean scanAround(int X , int Y);//全方向に1マスだけ行く
 	
 	/*Traverse*/
-	boolean Traverse(int X,int Y ,int attribute);
+	boolean traverse(int X,int Y ,int attribute);
 	//boolean TraverseOne(int dir , int X ,int Y);
 }

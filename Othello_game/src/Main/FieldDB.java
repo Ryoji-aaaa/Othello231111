@@ -212,7 +212,7 @@ public class FieldDB implements TraverseMethod{
 	}
 
 	@Override
-	public boolean Traverse(int X, int Y ,int attribute) {//GameOpeのscanPutPoint用
+	public boolean traverse(int X, int Y ,int attribute) {//GameOpeのscanPutPoint用
 		for(int i=0 ; i<8 ;i++) {
 			try {
 				int temp = goDIR(i , X , Y , 1);
